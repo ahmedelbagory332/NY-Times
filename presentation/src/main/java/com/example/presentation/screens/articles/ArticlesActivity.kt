@@ -1,5 +1,6 @@
 package com.example.presentation.screens.articles
 
+import android.content.Intent
 import android.os.Bundle
 import androidx.activity.ComponentActivity
 import androidx.activity.compose.setContent
@@ -21,7 +22,9 @@ import androidx.compose.ui.Modifier
 import androidx.compose.ui.res.painterResource
 import androidx.compose.ui.res.stringResource
 import androidx.compose.ui.unit.dp
+import com.example.domain.model.serializeArticleItemModel
 import com.example.presentation.R
+import com.example.presentation.screens.article_details.ArticlesDetailsActivity
 import com.example.presentation.screens.articles.component.ItemArticle
 import com.example.presentation.theme.NewsAppTheme
 import com.example.presentation.theme.darkWhite
@@ -81,7 +84,11 @@ class ArticlesActivity : ComponentActivity() {
 
             LazyColumn {
                 items(articlesViewModel.articlesState.value.listArticles) { article ->
-                    ItemArticle(article)
+                    ItemArticle(article){
+                        val intent = Intent(this@ArticlesActivity, ArticlesDetailsActivity::class.java)
+                        intent.putExtra("article", serializeArticleItemModel(it))
+                        startActivity(intent)
+                    }
                 }
             }
         } else if (articlesViewModel.articlesState.value.error.isNotEmpty()) {

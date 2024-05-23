@@ -23,7 +23,10 @@
             </intent-filter>
         </activity>
 
-
+        <activity
+            android:name="com.example.presentation.screens.article_details.ArticlesDetailsActivity"
+            android:exported="false"
+            android:theme="@style/Theme.NewsApp"/>
 
     </application>
 

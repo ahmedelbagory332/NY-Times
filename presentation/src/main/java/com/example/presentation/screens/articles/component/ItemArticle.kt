@@ -1,5 +1,6 @@
 package com.example.presentation.screens.articles.component
 
+import androidx.compose.foundation.clickable
 import androidx.compose.foundation.layout.Column
 import androidx.compose.foundation.layout.fillMaxWidth
 import androidx.compose.foundation.layout.height
@@ -20,11 +21,15 @@ import com.example.presentation.utils.CoilImage
 
 
 @Composable
-fun ItemArticle(item: ArticleItemModel) {
+fun ItemArticle(item: ArticleItemModel, onClick: (ArticleItemModel) -> Unit){
     Card(
         modifier = Modifier
             .padding(16.dp)
-            .fillMaxWidth(),
+            .fillMaxWidth()
+            .clickable {
+             onClick(item)
+            }
+        ,
         colors = CardDefaults.cardColors(
             containerColor = White,
         ),
@@ -49,7 +54,7 @@ fun ItemArticle(item: ArticleItemModel) {
             }
 
             CoilImage(
-                data = if (item.media.isNotEmpty()) item.media.first().mediaMetaData.last().url.toString() else "",
+                data = if (item.media.isNotEmpty()) item.media.first().mediaMetaData[1].url.toString() else "",
                 contentDescription = "",
                 modifier = Modifier
                     .height(200.dp)

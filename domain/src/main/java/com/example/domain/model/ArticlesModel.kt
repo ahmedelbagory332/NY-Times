@@ -1,10 +1,16 @@
 package com.example.domain.model
 
+import kotlinx.serialization.Serializable
+import kotlinx.serialization.encodeToString
+import kotlinx.serialization.json.Json
 
+
+@Serializable
 data class ArticlesModel(
     var results: ArrayList<ArticleItemModel> = arrayListOf()
 )
 
+@Serializable
 data class MediaMetaDataModel(
     var url: String? = null,
     var format: String? = null,
@@ -12,6 +18,7 @@ data class MediaMetaDataModel(
     var width: Int? = null
 )
 
+@Serializable
 data class MediaModel(
 
     var type: String? = null,
@@ -23,6 +30,7 @@ data class MediaModel(
 
 )
 
+@Serializable
 data class ArticleItemModel(
 
     var id: Long? = null,
@@ -37,3 +45,10 @@ data class ArticleItemModel(
     var media: ArrayList<MediaModel> = arrayListOf(),
 
 )
+fun serializeArticleItemModel(obj: ArticleItemModel): String {
+    return Json.encodeToString(obj)
+}
+
+fun deserializeArticleItemModel(jsonString: String): ArticleItemModel {
+    return Json.decodeFromString(jsonString)
+}

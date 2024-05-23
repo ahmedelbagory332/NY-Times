@@ -4,4 +4,7 @@
     <string name="your_category">"Your Category : "</string>
     <string name="main_title">NY Times Articles</string>
     <string name="article_details">Article Details</string>
+    <string name="published_date">Published Date: %1$s</string>
+    <string name="keywords">Keywords: %1$s</string>
+
 </resources>
