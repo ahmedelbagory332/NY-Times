@@ -25,10 +25,14 @@ class ArticlesViewModel @Inject constructor(
 
 
     init {
-
-        getArticles()
+        handleIntent(ArticlesIntent.LoadArticles)
     }
 
+    private fun handleIntent(intent: ArticlesIntent) {
+        when (intent) {
+            is ArticlesIntent.LoadArticles -> getArticles()
+        }
+    }
 
     private fun getArticles() {
         articlesUseCase().onEach { result ->
